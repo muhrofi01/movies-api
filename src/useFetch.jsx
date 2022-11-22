@@ -20,7 +20,7 @@ const useFetch = (url) => {
 
   const getMoviesPopular = async () => {
     try {
-      const response = await tmdb.get("movie/top_rated");
+      const response = await tmdb.get("discover/movie");
       let transformMovies = [];
       transformMovies = response.data.results.map((movie) => {
         let date = new Date(movie.release_date);
