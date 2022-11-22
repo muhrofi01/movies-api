@@ -1,15 +1,44 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import tmdb from "./api/tmdb";
 
 const useFetch = (url) => {
   const [movies, setMovies] = useState(null);
+  const month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   const getMoviesPopular = async () => {
     try {
-      const response = await axios.get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=366e3d5a78cfe62d5f3116a3282f71f9&language=en-US&page=1"
-      );
-      setMovies(response.data.results);
+      const response = await tmdb.get("movie/top_rated");
+      let transformMovies = [];
+      transformMovies = response.data.results.map((movie) => {
+        let date = new Date(movie.release_date);
+        let dateFormat =
+          month[date.getMonth()] +
+          " " +
+          date.getDate() +
+          ", " +
+          date.getFullYear();
+        return {
+          id: movie.id,
+          title: movie.title,
+          image: movie.poster_path,
+          release_date: dateFormat,
+          rating: movie.vote_average,
+        };
+      });
+      setMovies(transformMovies);
     } catch (error) {
       console.log(error);
     }

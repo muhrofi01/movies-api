@@ -12,8 +12,9 @@ function App() {
           <MovieCard
             key={movie.id}
             title={movie.title}
-            image={movie.poster_path}
-            overview={movie.overview}
+            image={movie.image}
+            release_date={movie.release_date}
+            rating={movie.rating}
           />
         ))}
     </MovieWrapper>
