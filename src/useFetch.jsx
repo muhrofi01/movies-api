@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import tmdb from "./api/tmdb";
+// import tmdb from "./api/tmdb";
+import axios from "axios";
 
-const useFetch = (url) => {
+const useFetch = (search) => {
   const [movies, setMovies] = useState(null);
   const month = [
     "Jan",
@@ -17,10 +18,33 @@ const useFetch = (url) => {
     "Nov",
     "Dec",
   ];
-
-  const getMoviesPopular = async () => {
+  const getMoviesPopular = async (query) => {
+    console.log(query);
     try {
-      const response = await tmdb.get("discover/movie");
+      let response;
+      if (query === "") {
+        response = await axios.get(
+          "https://api.themoviedb.org/3/discover/movie",
+          {
+            params: {
+              api_key: "366e3d5a78cfe62d5f3116a3282f71f9",
+              sort_by: "popularity.desc",
+              page: 1,
+            },
+          }
+        );
+      } else {
+        response = await axios.get(
+          "https://api.themoviedb.org/3/search/movie",
+          {
+            params: {
+              api_key: "366e3d5a78cfe62d5f3116a3282f71f9",
+              query: query,
+              page: 1,
+            },
+          }
+        );
+      }
       let transformMovies = [];
       transformMovies = response.data.results.map((movie) => {
         let date = new Date(movie.release_date);
@@ -45,8 +69,8 @@ const useFetch = (url) => {
   };
 
   useEffect(() => {
-    getMoviesPopular();
-  }, []);
+    getMoviesPopular(search);
+  }, [search]);
 
   return [movies];
 };

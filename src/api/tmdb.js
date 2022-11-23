@@ -7,5 +7,6 @@ export default axios.create({
   },
   params: {
     api_key: "366e3d5a78cfe62d5f3116a3282f71f9",
+    sort_by: "popularity.desc",
   },
 });

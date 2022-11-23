@@ -1,12 +1,20 @@
 import useFetch from "./useFetch";
 import MovieCard from "./MovieCard";
 import MovieWrapper from "./MovieWrapper";
+import TopBar from "./TopBar";
+import { useState } from "react";
 
 function App() {
-  const [movies] = useFetch();
+  const [search, setSearch] = useState("");
+  const searchHandler = (enteredSearch) => {
+    setSearch(enteredSearch);
+  };
+
+  const [movies] = useFetch(search);
 
   return (
     <MovieWrapper>
+      <TopBar onSearch={searchHandler} />
       {movies &&
         movies.map((movie) => (
           <MovieCard
