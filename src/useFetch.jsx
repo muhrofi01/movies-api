@@ -19,7 +19,6 @@ const useFetch = (search) => {
     "Dec",
   ];
   const getMoviesPopular = async (query) => {
-    console.log(query);
     try {
       let response;
       if (query === "") {
