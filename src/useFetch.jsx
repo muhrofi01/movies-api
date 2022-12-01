@@ -21,7 +21,7 @@ const useFetch = (search) => {
   const getMoviesPopular = useCallback(async() => {
     try {
       let response;
-      if (query === "") {
+      if (search === "") {
         response = await axios.get(
           "https://api.themoviedb.org/3/discover/movie",
           {
@@ -38,7 +38,7 @@ const useFetch = (search) => {
           {
             params: {
               api_key: "366e3d5a78cfe62d5f3116a3282f71f9",
-              query: query,
+              query: search,
               page: 1,
             },
           }
