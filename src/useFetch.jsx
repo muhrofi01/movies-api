@@ -18,7 +18,7 @@ const useFetch = (search) => {
     "Nov",
     "Dec",
   ];
-  const month2 = useMemo(() => month, [month]);
+  const month2 = useMemo(() => [month], [month]);
   
   const getMoviesPopular = useCallback(async() => {
     try {
