@@ -4,20 +4,7 @@ import axios from "axios";
 
 const useFetch = (search) => {
   const [movies, setMovies] = useState(null);
-  const month = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  
   const month2 = useMemo(() => [
     "Jan",
     "Feb",
@@ -84,7 +71,7 @@ const useFetch = (search) => {
 
   useEffect(() => {
     getMoviesPopular();
-  }, [getMoviesPopular, month2]);
+  }, [getMoviesPopular]);
 
   return [movies];
 };
