@@ -18,7 +18,7 @@ const useFetch = (search) => {
     "Nov",
     "Dec",
   ];
-  const month2 = useMemo(() => (month), []);
+  const month2 = useMemo(() => (month), [month]);
   
   const getMoviesPopular = useCallback(async() => {
     try {
@@ -50,7 +50,7 @@ const useFetch = (search) => {
       transformMovies = response.data.results.map((movie) => {
         let date = new Date(movie.release_date);
         let dateFormat =
-          month[date.getMonth()] +
+          month2[date.getMonth()] +
           " " +
           date.getDate() +
           ", " +
