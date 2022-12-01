@@ -18,7 +18,7 @@ const useFetch = (search) => {
     "Nov",
     "Dec",
   ];
-  const getMoviesPopular = useCallback(() => {
+  const getMoviesPopular = useCallback(async() => {
     try {
       let response;
       if (query === "") {
