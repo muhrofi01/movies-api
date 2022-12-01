@@ -69,7 +69,7 @@ const useFetch = (search) => {
 
   useEffect(() => {
     getMoviesPopular(search);
-  }, [getMoviesPopular]);
+  }, [getMoviesPopular, search]);
 
   return [movies];
 };
