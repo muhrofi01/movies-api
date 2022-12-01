@@ -4,23 +4,26 @@ import axios from "axios";
 
 const useFetch = (search) => {
   const [movies, setMovies] = useState(null);
-  
-  const month2 = useMemo(() => [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
-  ], []);
-  
-  const getMoviesPopular = useCallback(async() => {
+
+  const month = useMemo(
+    () => [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    []
+  );
+
+  const getMoviesPopular = useCallback(async () => {
     try {
       let response;
       if (search === "") {
@@ -50,7 +53,7 @@ const useFetch = (search) => {
       transformMovies = response.data.results.map((movie) => {
         let date = new Date(movie.release_date);
         let dateFormat =
-          month2[date.getMonth()] +
+          month[date.getMonth()] +
           " " +
           date.getDate() +
           ", " +
@@ -67,7 +70,7 @@ const useFetch = (search) => {
     } catch (error) {
       console.log(error);
     }
-  }, [search, month2]);
+  }, [search, month]);
 
   useEffect(() => {
     getMoviesPopular();
