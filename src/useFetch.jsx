@@ -26,7 +26,7 @@ const useFetch = (search) => {
           "https://api.themoviedb.org/3/discover/movie",
           {
             params: {
-              api_key: "<< api_key pengguna (Anda) >>",
+              api_key: "366e3d5a78cfe62d5f3116a3282f71f9",
               sort_by: "popularity.desc",
               page: 1,
             },
@@ -37,7 +37,7 @@ const useFetch = (search) => {
           "https://api.themoviedb.org/3/search/movie",
           {
             params: {
-              api_key: "<< api_key pengguna (Anda) >>",
+              api_key: "366e3d5a78cfe62d5f3116a3282f71f9",
               query: query,
               page: 1,
             },
