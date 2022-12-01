@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 // import tmdb from "./api/tmdb";
 import axios from "axios";
 
@@ -18,7 +18,7 @@ const useFetch = (search) => {
     "Nov",
     "Dec",
   ];
-  const getMoviesPopular = async (query) => {
+  const getMoviesPopular = useCallback(() => {
     try {
       let response;
       if (query === "") {
@@ -65,11 +65,11 @@ const useFetch = (search) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [search]);
 
   useEffect(() => {
-    getMoviesPopular(search);
-  }, [getMoviesPopular, search]);
+    getMoviesPopular();
+  }, [getMoviesPopular]);
 
   return [movies];
 };
