@@ -65,7 +65,7 @@ const useFetch = (search) => {
     } catch (error) {
       console.log(error);
     }
-  }, [search]);
+  }, [search, month]);
 
   useEffect(() => {
     getMoviesPopular();
